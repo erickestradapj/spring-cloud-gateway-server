@@ -1,0 +1,17 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: service-products
+          uri: lb://service-products
+          predicates:
+            - Path=/api/products/**
+          filters:
+            - StripPrefix=2
+            - ExampleCookie=Hello world API Gateway, user, ErickEstrada
+        - id: service-items
+          uri: lb://service-items
+          predicates:
+            - Path=/api/items/**
+          filters:
+            - StripPrefix=2
